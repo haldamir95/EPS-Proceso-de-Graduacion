@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap-ingenieria/sass/custom_variables";
+@import "custom_variables";
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-ingenieria/sass/custom_elements";
+
+.ingenieria-internos-titulo {
+    color: $warning;
+    text-shadow: 1em 1ex 1px #C0C0C0;
+    font-style: italic;
+}
+
+@for $i from 1 through $grid-columns {
+  .tabla-col-#{$i} {
+    width: percentage($i / $grid-columns);
+  }
+}
+
+.btn-normal-wrap {
+    white-space: normal !important;
+}

@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block container %}
+Starter Page <br/>
+Carnet: {{app.session.get('carnet')}}
+Nombre: {{app.session.get('nombre-estudiante')}}
+{% endblock %}
