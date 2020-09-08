@@ -14,8 +14,22 @@ Debes instalar lo siguiente en tu maquina local:
 
 * Vagrant
 * Composer
+* Symfony 4.1
 * PHP 7.2
 * Git
+
+### CORRER DE FORMA LOCAL
+
+* En la carpeta 'Portal Ingenieria' escribir el comando "Symfony server:start"
+
+
+### CORRER CON VAGRANT
+
+* En la / donde esta el Vagrantfile escribir el comando vagrant up
+* $vagrant ssh
+* $ip address
+* Buscar la IP y logear
+
 
 ### Puesta a punto
 
