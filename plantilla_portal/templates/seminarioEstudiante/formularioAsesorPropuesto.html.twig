@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ingenieria-USAC{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+        
+        
+        {% block stylesheets %}
+            <!-- App css -->
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/app.css" rel="stylesheet" type="text/css" />
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                {% block topbar %}
+                    {{include('/partials/topbar.html.twig')}}
+                {% endblock %}
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            {% block sidebar %}
+                {{include('/partials/barraEstudiante.html.twig')}}
+            {% endblock %}
+            <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid"></div>
+                {% block container %}
+
+                <div class="row justify-content-md-center">
+		            <div class="col-md-8 col-sm-auto">
+                
+                        <h2>Agragar asesor de trabajo de graduacion</h2>
+                        <p>
+                        En este formulario el estudiante debe proponer un asesor para el trabajo de graduacion<br>
+                        se debe de ingresar con los requisitos estipulados por su respectiva escuela y esperar<br>
+                        la aprobacion del catedratico del curso de Seminario de Investigacion.
+                        </p>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                            <label for="nombres_asesor">Nombres del Asesor:</label>
+                            <input class="form-control" type='text' name='nombres_asesor' id='nombres_asesor' placeholder="Escriba los nombres del asesor..."
+                                value="" required>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                            <label for="apellidos_asesor">Apellidos del Asesor:</label>
+                            <input class="form-control" type='text' name='apellidos_asesor' id='apellidos_asesor' placeholder="Escriba los apellidos del asesor..."
+                                value="" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="numero_colegiado">Numero de Colegiado:</label>
+                                <input class="form-control" type='text' pattern=".{5}" name='numero_colegiado' id='numero_colegiado'
+                                    minlength="5" maxlength='13' placeholder="Numero de colegiado" required>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="tiempo_colegiado">Tiempo de colegiado:</label>
+                                <input class="form-control" type='text' pattern=".{1}" name='tiempo_colegiado' id='tiempo_colegiado'
+                                    minlength="1" maxlength='2' placeholder="Numero de Años colegiado" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                            <label for="comentario">Comentario para catedratico:</label>
+                            <textarea class="form-control" type='text' name='comentario' id='comentario' placeholder="Escriba su comentario..."
+                                value="" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="submit" name="confirmar" id='confirmar' value="Confirmar asesor" 
+                                    class="btn btn-success">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>           
+                {% endblock %}
+                {% block footer %}
+                    {{include('/partials/footer.html.twig')}}
+                {% endblock %}
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+        
+        {% block javascripts %}
+            <!-- Vendor js -->
+            <script src="/assets/js/vendor.js"></script>
+            <!-- App js-->
+            <script src="/assets/js/app.js"></script>
+        {% endblock %}
+        
+    </body>
+</html>

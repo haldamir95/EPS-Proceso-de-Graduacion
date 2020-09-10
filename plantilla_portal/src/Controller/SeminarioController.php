@@ -41,5 +41,19 @@ class SeminarioController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/curso_seminario/formularioAsesorPropuesto", name="formularioAsesorPropuesto")
+     */
+    public function formularioAsesorPropuesto(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
+    {
+         
+        /*$contents = dirname(__DIR__);
+        $response = new Response($contents);
+        return $response;*/
+        return $this->render(
+            'seminarioEstudiante/formularioAsesorPropuesto.html.twig'
+        );
+    }
+
 
 }
