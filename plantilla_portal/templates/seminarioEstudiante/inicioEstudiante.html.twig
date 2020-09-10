@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ingenieria-USAC{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+        
+        
+        {% block stylesheets %}
+            <!-- App css -->
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/app.css" rel="stylesheet" type="text/css" />
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                {% block topbar %}
+                    {{include('/partials/topbar.html.twig')}}
+                {% endblock %}
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            {% block sidebar %}
+                {{include('/partials/barraEstudiante.html.twig')}}
+            {% endblock %}
+            <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid"></div>
+                {% block container %}
+                
+
+
+                {% endblock %}
+                {% block footer %}
+                    {{include('/partials/footer.html.twig')}}
+                {% endblock %}
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+        
+        {% block javascripts %}
+            <!-- Vendor js -->
+            <script src="/assets/js/vendor.js"></script>
+            <!-- App js-->
+            <script src="/assets/js/app.js"></script>
+        {% endblock %}
+        
+    </body>
+</html>
