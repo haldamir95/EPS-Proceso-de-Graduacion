@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ingenieria-USAC{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+        
+        
+        {% block stylesheets %}
+            <!-- App css -->
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/app.css" rel="stylesheet" type="text/css" />
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                {% block topbar %}
+                    {{include('/partials/topbar.html.twig')}}
+                {% endblock %}
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            {% block sidebar %}
+                {{include('/partials/barraEstudiante.html.twig')}}
+            {% endblock %}
+            <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid"></div>
+                {% block container %}
+
+                <div class="row justify-content-md-center">
+		            <div class="col-md-8 col-sm-auto">
+                
+                        <h2>Adjuntar carta de compromiso de asesor</h2>
+                        <p>
+                        Luego de la aprobacion del asesor por parte del catedratico del curso de Seminario<br>
+                        se debe de adjuntar la carta de compromiso del asesor con el alumno, para la asesoria<br>
+                        en el trabajo de graduacion del alumno esta debe de estar en formato PDF, membretada<br>
+                        y firmada.
+                        </p>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                            <h5>Requisitos De Carta de Compromiso de Asesor</h5>
+                            <h6 style="color:#1f618d "> <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                Formatos validos: pdf</h6>
+                            <h6 style="color:#1f618d "> <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                Tamaño máximo del archivo 2MB</h6>
+                            <br>
+                            <label for="carta">Carta de Compromiso de Asesor</label><br>
+                            <input name='carta'
+                                    id='carta'
+                                    type='file'
+                                    accept='.pdf'
+                                    class='form-control-file'
+                                    data-max-size='2048'
+                                    required
+                                    onchange="leerFotografia(this, 'fotografia')">
+                            <label id="lblcarta" class="alert-warning"></label>
+                            <img id="carta" src="" class="col-md-6" style="display:none" />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <input type="submit" name="confirmar" id='confirmar' value="Confirmar carta" 
+                                    class="btn btn-success">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>           
+                {% endblock %}
+                {% block footer %}
+                    {{include('/partials/footer.html.twig')}}
+                {% endblock %}
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+        
+        {% block javascripts %}
+            <!-- Vendor js -->
+            <script src="/assets/js/vendor.js"></script>
+            <!-- App js-->
+            <script src="/assets/js/app.js"></script>
+        {% endblock %}
+        
+    </body>
+</html>

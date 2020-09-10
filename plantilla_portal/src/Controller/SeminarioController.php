@@ -55,5 +55,19 @@ class SeminarioController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/curso_seminario/formularioCartaCompromiso", name="formularioCartaCompromiso")
+     */
+    public function formularioCartaCompromiso(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
+    {
+         
+        /*$contents = dirname(__DIR__);
+        $response = new Response($contents);
+        return $response;*/
+        return $this->render(
+            'seminarioEstudiante/formularioCartaCompromiso.html.twig'
+        );
+    }
+
 
 }
