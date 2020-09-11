@@ -69,5 +69,19 @@ class SeminarioController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/curso_seminario/formularioAgendarReunion", name="formularioAgendarReunion")
+     */
+    public function formularioAgendarReunion(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
+    {
+         
+        /*$contents = dirname(__DIR__);
+        $response = new Response($contents);
+        return $response;*/
+        return $this->render(
+            'seminarioEstudiante/formularioAgendarReunion.html.twig'
+        );
+    }
+
 
 }
