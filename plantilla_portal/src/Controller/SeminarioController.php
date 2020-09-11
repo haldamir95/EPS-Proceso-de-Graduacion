@@ -69,5 +69,19 @@ class SeminarioController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/curso_seminario/calendarioActividades", name="calendarioActividades")
+     */
+    public function calendarioActividades(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
+    {
+         
+        /*$contents = dirname(__DIR__);
+        $response = new Response($contents);
+        return $response;*/
+        return $this->render(
+            'seminarioEstudiante/calendarioActividades.html.twig'
+        );
+    }
+
 
 }

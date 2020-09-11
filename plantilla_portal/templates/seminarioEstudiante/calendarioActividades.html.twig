@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Ingenieria-USAC{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+        <!-- FULL CALENDAR -->
+        <!-- FULL CALENDAR ESTILOS-->
+        <link href='/fullcalendar/core/main.css' rel='stylesheet' />
+        <link href='/fullcalendar/daygrid/main.css' rel='stylesheet' />
+        <link href='/fullcalendar/list/main.css' rel='stylesheet' />
+        <link href='/fullcalendar/timegrid/main.css' rel='stylesheet' />
+
+        <style>
+            html,body{
+                margin:0; padding: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14px;
+            }
+            #calendar{
+                max-width:900px;
+                margin:40px auto;
+            }
+        </style>
+        <!-- FULL CALENDAR PLUGINS-->
+        <script src='/fullcalendar/core/main.js'></script>
+        <script src='/fullcalendar/daygrid/main.js'></script>
+        <script src='/fullcalendar/interaction/main.js'></script>
+        <script src='/fullcalendar/list/main.js'></script>
+        <script src='/fullcalendar/timegrid/main.js'></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth()).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                var calendarEl = document.getElementById('calendar');
+                
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    //Iniciando calendario en fecha actual
+                    defaultDate:new Date(yyyy,mm,dd),
+                    //Instanciando plugins a utilizar
+                    plugins: [ 'dayGrid', 'interaction', 'timeGrid', 'list' ],
+                    //Vista por defecto
+                    //defaultView: 'timeGridDay' o 'timeGridWeek'
+                    //Ordenando cabezera
+                    header:{
+                        left: 'prev,next today botonModal', 
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    //Botones Personalizados
+                    customButtons:{
+                        botonModal:{
+                            text:'Modal',
+                            click:function(){
+                                //alert('Hola mundo!');
+                                $('#exampleModal').modal('toggle');
+                            }
+                        }
+                    },
+                    //Interaccion con celdas del calendario AGREGACION DE EVENTOS
+                    dateClick:function(info){
+                        $('#txtFecha').val(info.dateStr)
+                        $('#exampleModal').modal('toggle');
+                        calendar.addEvent(
+                            {
+                                title:"Evento X",
+                                date:info.dateStr
+                            }
+                        );
+                    },
+                    //Interaccion con los EVENTOS de las celdas
+                    eventClick:function(info){
+                        console.log(info); //revisar la consola para ver toda la informacion que brinda
+                        console.log(info.event.title);
+                        console.log(info.event.start);
+                        //para llamar a las propiedades personalizadas
+                        console.log(info.event.extendedProps.descripcion);
+                    },
+                    //Eventos ESTATICOS en el calendario
+                    events:[
+                        {
+                            title:"Evento1",
+                            start:"2020-09-10 12:30:00",
+                            //se puede agregar cualquier propiedad
+                            descripcion:"Descripcion del evento 1"
+                        },{
+                            title:"Evento2",
+                            start:"2020-09-14 12:30:00",
+                            end: "2020-09-19 12:30:00",
+                            color:"#04B404",
+                            textColor: "#000000"
+                        }
+                    ]
+
+                });
+                //Cambiar el idioma a espaniol
+                calendar.setOption('locale','ES');
+                //Renderizar el calendario par apoder verlo
+                calendar.render();
+                //Capturar la informacion del Modal
+                $('#btnAgregar').click(function(){
+                    recolectarDatosGUI("POST");
+                });
+                function recolectarDatosGUI(method){
+                    nuevoEvento = {
+                        id:$('#txtId').val(),
+                        title:$('#txtTitulo').val(),
+                        descripcion:$('#txtDescripcion').val(),
+                        color:$('#txtColor').val(),
+                        txtColor:'#FFFFFF',
+                        start:$('#txtFecha').val()+" "+$('#txtHora').val(),
+                        end:$('#txtFecha').val()+" "+$('#txtHora').val(),
+                        '_token':$("meta[name='csrf-token']").attr("content"),
+                        '_method': method
+                    }
+                    console.log(nuevoEvento);
+                }
+            });
+        </script>
+        <!-- FULL CALENDAR -->
+        
+        
+        {% block stylesheets %}
+            <!-- App css -->
+            <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+            <link href="/assets/css/app.css" rel="stylesheet" type="text/css" />
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Begin page -->
+        <div id="wrapper">
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                {% block topbar %}
+                    {{include('/partials/topbar.html.twig')}}
+                {% endblock %}
+            </div>
+            <!-- end Topbar -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            {% block sidebar %}
+                {{include('/partials/barraEstudiante.html.twig')}}
+            {% endblock %}
+            <!-- Left Sidebar End -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid"></div>
+                {% block container %}
+
+                <div class="row justify-content-md-center">
+		            <div class="col-md-8 col-sm-auto">
+                
+                        <h2>CALENDARIO DE ACTIVIDADES</h2>
+                        <p>
+                        En este formulario el estudiante podra crear actividades y visualizar actividades<br>
+                        </p>
+                        holis
+                        <div id='calendar'></div>
+
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Launch demo modal
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Datos del Evento</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Id:
+                                    <input type="text" name"txtId" id="txtId">
+                                    <br/>
+                                    Fecha:
+                                    <input type="text" name"txtFecha" id="txtFecha">
+                                    <br/>
+                                    Titulo:
+                                    <input type="text" name"txtTitulo" id="txtTitulo">
+                                    <br/>
+                                    Hora:
+                                    <input type="text" name"txtHora" id="txtHora">
+                                    <br/>
+                                    Descripcion:
+                                    <textarea name"txtDescripcion" id="txtDescripcion" cols="30" rows="10"></textarea>
+                                    <br/>
+                                    Color:
+                                    <input type="color" name"txtColor" id="txtColor">
+                                    <br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btnAgregar" type="button" class="btn btn-success" data-dismiss="modal">Agregar</button>
+                                    <button id="btnModificar" type="button" class="btn btn-warning">Modificar</button>
+                                    <button id="btnBorrar" type="button" class="btn btn-danger" data-dismiss="modal">Borrar</button>
+                                    <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>           
+                {% endblock %}
+                {% block footer %}
+                    {{include('/partials/footer.html.twig')}}
+                {% endblock %}
+            </div>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+        
+        {% block javascripts %}
+            <!-- Vendor js -->
+            <script src="/assets/js/vendor.js"></script>
+            <!-- App js-->
+            <script src="/assets/js/app.js"></script>
+        {% endblock %}
+        
+    </body>
+</html>
