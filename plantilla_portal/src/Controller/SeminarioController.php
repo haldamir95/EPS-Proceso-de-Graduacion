@@ -79,7 +79,8 @@ class SeminarioController extends AbstractController
         );
     }
 
-    /* @Route("/curso_seminario/formularioAgendarReunion", name="formularioAgendarReunion")
+    /**
+     * @Route("/curso_seminario/formularioAgendarReunion", name="formularioAgendarReunion")
      */
 
     public function formularioAgendarReunion(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
