@@ -40,9 +40,54 @@
             <div class="content">
                 <div class="container-fluid"></div>
                 {% block container %}
-                
 
+                <div class="row justify-content-md-center">
+		            <div class="col-md-8 col-sm-auto">
 
+                        <h2>Progreso del Proceso de Graduacion</h2>
+                        <p>
+                        Durante el desarrollo del proceso de graduacion se visualizan las siguientes fases por las cuales<br>
+                        el estudiante debe completar el 100% del progreso para poder culminar la carrera universitaria dentro<br>
+                        de la Facultad de Ingenieria de la Universidad de San Carlos de Guatemala.
+                        </p>
+
+                        <div class="form-row">
+                            <div class="col">
+                                <h5>Curso Seminario</h5>
+                                <input type="text" value="100" class="dial">
+                                <h5>% Porcentaje</h5>
+                                <a href = "{{path('formularioTituloTrbajoDeGraduacion') }}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmar">
+                                    <i class="fas fa-search"></i>
+                                    Resumen
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <h5>Seguimiento</h5>
+                                <input type="text" value="80" class="dial">
+                                <h5>% Porcentaje</h5>
+                                <a href = "#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmar">
+                                    <i class="fas fa-search"></i>
+                                    Resumen
+                                </a>
+                            </div>
+
+                            <div class="col">
+                                <h5>Finalizacion</h5>
+                                <input type="text" value="10" class="dial">
+                                <h5>% Porcentaje</h5>
+                                <a href = "#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmar">
+                                    <i class="fas fa-search"></i>
+                                    Resumen
+                                </a>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+        
                 {% endblock %}
                 {% block footer %}
                     {{include('/partials/footer.html.twig')}}
@@ -57,10 +102,23 @@
         <!-- END wrapper -->
         
         {% block javascripts %}
-            <!-- Vendor js -->
-            <script src="/assets/js/vendor.js"></script>
-            <!-- App js-->
-            <script src="/assets/js/app.js"></script>
+            <script src="/assets/js/jquery.js"></script>
+            <script src="/assets/js/jquery.knob.js"></script>
+            <script>
+                $(document).ready(function() {
+                //$(".dial").knob();
+                $('.dial').knob({
+                    'min':0,
+                    'max':100,
+                    'width':100,
+                    'height':100,
+                    'displayInput':true,
+                    'fgColor':"#0368AD ",
+                    'release':function(v) { },
+                    'readOnly':true
+                });
+                });
+            </script>
         {% endblock %}
         
     </body>
