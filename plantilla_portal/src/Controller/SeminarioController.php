@@ -74,14 +74,21 @@ class SeminarioController extends AbstractController
      */
     public function calendarioActividades(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
     {
-         
-        /*$contents = dirname(__DIR__);
-        $response = new Response($contents);
-        return $response;*/
         return $this->render(
             'seminarioEstudiante/calendarioActividades.html.twig'
         );
     }
 
+    /* @Route("/curso_seminario/formularioAgendarReunion", name="formularioAgendarReunion")
+     */
 
+    public function formularioAgendarReunion(Request $request, ModeloSeguridad $modelo, SessionInterface $session)
+    {
+        /*$contents = dirname(__DIR__);
+        $response = new Response($contents);
+        return $response;*/
+        return $this->render(
+            'seminarioEstudiante/formularioAgendarReunion.html.twig'
+        );
+    }
 }
